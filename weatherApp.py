@@ -4,6 +4,10 @@ import json
 from tkinter import *
 
 from pprint import pprint
+root = Tk()
+
+norm_font = ("Consolas", 20)
+bold_font = ("Consolas", 20, "bold")
 
 key = "503ed57b27900c47536cbec6009d5475"
 query = "New York"
@@ -29,4 +33,21 @@ class CityPage(Frame):
         self.parent = parent
         self.city = city
 
-        self.current_weather_icon = Label()
+        photo = PhotoImage(file="logo.png")
+        w = Label(parent, image=photo)
+        w.photo = photo
+        w.grid(row = 1, column = 1, columnspan = 1)
+
+        self.current_weather_icon = Label(root, text = query, font = bold_font)
+        self.current_weather_icon.grid(row = 2, column = 1, columnspan = 1)
+
+        temp = json_data['main']['temp']
+        
+        self.current_weather_icon = Label(root, text = query, font = bold_font)
+        self.current_weather_icon.grid(row = 2, column = 1, columnspan = 1)
+
+        self.current_weather_icon = Label(root, text = str(temp) + " °C", font = norm_font)
+        self.current_weather_icon.grid(row = 3, column = 1, columnspan = 1)
+        
+
+cityObj = CityPage(root, query);
